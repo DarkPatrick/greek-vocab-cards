@@ -30,12 +30,14 @@ BASE_TENSES = {"present", "imperfect", "aorist", "future_continuous", "future_si
 # Verbs used only in some persons in everyday speech; everything else needs all six.
 PERSON_EXCEPTIONS = {
     "πρέπει": {("third", "singular")},
+    "πρόκειται": {("third", "singular")},
     "υπάρχω": {("third", "singular"), ("third", "plural")},
 }
 TENSE_EXCEPTIONS = {
     "είμαι": {"present", "imperfect", "future_continuous"},
     "έχω": {"present", "imperfect", "future_continuous"},
     "πρέπει": {"present", "imperfect", "future_continuous"},
+    "πρόκειται": {"present", "imperfect"},
 }
 
 
