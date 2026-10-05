@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import csv
+import re
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
@@ -55,6 +56,10 @@ def processed_lemma_outputs(path: Path) -> dict[str, str]:
             output_file = row.get("output_file", "")
             if lemma and output_file:
                 outputs.setdefault(lemma, output_file)
+                # Compound lemmas like "ένας, μία/μια, ένα" also match each of their parts.
+                for part in re.split(r"[,/]", lemma):
+                    if part.strip():
+                        outputs.setdefault(part.strip(), output_file)
     return outputs
 
 
