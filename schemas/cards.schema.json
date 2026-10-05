@@ -1,0 +1,247 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "items": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "properties": {
+          "source_word": {
+            "type": "string",
+            "minLength": 1
+          },
+          "lemma": {
+            "type": "string",
+            "minLength": 1
+          },
+          "lemma_transliteration": {
+            "type": "string",
+            "minLength": 1
+          },
+          "russian": {
+            "type": "string",
+            "minLength": 1
+          },
+          "part_of_speech": {
+            "type": "string",
+            "minLength": 1
+          },
+          "gender": {
+            "type": "string",
+            "enum": [
+              "masculine",
+              "feminine",
+              "neuter",
+              "common",
+              "not_applicable"
+            ]
+          },
+          "note_ru": {
+            "type": "string"
+          },
+          "omitted_basic_tenses": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "tense": {
+                  "type": "string",
+                  "enum": [
+                    "present",
+                    "imperfect",
+                    "aorist",
+                    "future_continuous",
+                    "future_simple"
+                  ]
+                },
+                "reason_ru": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "required": [
+                "tense",
+                "reason_ru"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "forms": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "properties": {
+                "popularity_rank": {
+                  "type": "integer",
+                  "minimum": 1
+                },
+                "grammatical_uses": {
+                  "type": "array",
+                  "minItems": 1,
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "number": {
+                        "type": "string",
+                        "enum": [
+                          "singular",
+                          "plural",
+                          "both",
+                          "not_applicable"
+                        ]
+                      },
+                      "person": {
+                        "type": "string",
+                        "enum": [
+                          "first",
+                          "second",
+                          "third",
+                          "not_applicable"
+                        ]
+                      },
+                      "case": {
+                        "type": "string",
+                        "enum": [
+                          "nominative",
+                          "genitive",
+                          "accusative",
+                          "vocative",
+                          "not_applicable"
+                        ]
+                      },
+                      "gender": {
+                        "type": "string",
+                        "enum": [
+                          "masculine",
+                          "feminine",
+                          "neuter",
+                          "common",
+                          "not_applicable"
+                        ]
+                      },
+                      "tense": {
+                        "type": "string",
+                        "enum": [
+                          "present",
+                          "imperfect",
+                          "aorist",
+                          "future_continuous",
+                          "future_simple",
+                          "present_perfect",
+                          "past_perfect",
+                          "future_perfect",
+                          "not_applicable"
+                        ]
+                      },
+                      "mood": {
+                        "type": "string",
+                        "enum": [
+                          "indicative",
+                          "subjunctive",
+                          "imperative",
+                          "participle",
+                          "gerund",
+                          "not_applicable"
+                        ]
+                      },
+                      "voice": {
+                        "type": "string",
+                        "enum": [
+                          "active",
+                          "mediopassive",
+                          "not_applicable"
+                        ]
+                      }
+                    },
+                    "required": [
+                      "number",
+                      "person",
+                      "case",
+                      "gender",
+                      "tense",
+                      "mood",
+                      "voice"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "lexical_form": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "display_form": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "form_transliteration": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "usage_note_ru": {
+                  "type": "string"
+                },
+                "examples": {
+                  "type": "array",
+                  "minItems": 1,
+                  "maxItems": 4,
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "gr": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "transliteration": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "ru": {
+                        "type": "string",
+                        "minLength": 1
+                      }
+                    },
+                    "required": [
+                      "gr",
+                      "transliteration",
+                      "ru"
+                    ],
+                    "additionalProperties": false
+                  }
+                }
+              },
+              "required": [
+                "popularity_rank",
+                "grammatical_uses",
+                "lexical_form",
+                "display_form",
+                "form_transliteration",
+                "usage_note_ru",
+                "examples"
+              ],
+              "additionalProperties": false
+            }
+          }
+        },
+        "required": [
+          "source_word",
+          "lemma",
+          "lemma_transliteration",
+          "russian",
+          "part_of_speech",
+          "gender",
+          "note_ru",
+          "omitted_basic_tenses",
+          "forms"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "items"
+  ],
+  "additionalProperties": false
+}

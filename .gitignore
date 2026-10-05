@@ -1,0 +1,26 @@
+# --- Environment (recreate: python3 -m venv .venv && pip install -r requirements.txt) ---
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+
+# --- OS / editor junk ---
+.DS_Store
+.idea/
+.vscode/
+*.swp
+
+# --- Backups made before bulk edits (local safety copies, not history) ---
+data/legacy_html_backup/
+data/pre_*_backup_*/
+*.bak
+
+# --- Temporary files (two-phase renames in scripts/delete_cards.py) ---
+*.tmp
+
+# Tracked on purpose:
+#   output/*.html           — the cards themselves
+#   data/processed.csv      — journal of generated cards (generator state)
+#   data/known_forms.csv    — covered word forms (generator state)
+#   data/frequency.csv      — frozen wordfreq snapshot, keeps ranks reproducible
+#   audits/                 — manual audit notes
