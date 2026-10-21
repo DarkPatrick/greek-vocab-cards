@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import csv
 import re
+import unicodedata
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
@@ -63,6 +64,14 @@ def processed_lemma_outputs(path: Path) -> dict[str, str]:
     return outputs
 
 
+def strip_accents(value: str) -> str:
+    """Drop Greek accent and diaeresis marks: έχω → εχω."""
+    decomposed = unicodedata.normalize("NFD", value)
+    return unicodedata.normalize(
+        "NFC", "".join(char for char in decomposed if not unicodedata.combining(char))
+    )
+
+
 def select_next_words(
     frequency_rows: list[dict[str, str]],
     *,
@@ -72,10 +81,15 @@ def select_next_words(
 ) -> list[dict[str, str]]:
     """Pick the next unseen ranked tokens."""
     selected: list[dict[str, str]] = []
+    covered_unaccented = {strip_accents(word) for word in processed | known}
 
     for row in frequency_rows:
         normalized = normalize_word(row["source_word"])
         if normalized in processed or normalized in known:
+            continue
+        # A token typed without its accent (εχω, ηταν) is a spelling of a word that
+        # already has a card; accented tokens are matched exactly (πότε ≠ ποτέ).
+        if strip_accents(normalized) == normalized and normalized in covered_unaccented:
             continue
         # Single letters (ν, μ, σ' …) are letter names or elisions, not vocabulary.
         if len(normalized.strip("’'΄")) <= 1:
