@@ -31,6 +31,7 @@ BASE_TENSES = {"present", "imperfect", "aorist", "future_continuous", "future_si
 PERSON_EXCEPTIONS = {
     "πρέπει": {("third", "singular")},
     "πρόκειται": {("third", "singular")},
+    "αφορώ": {("third", "singular"), ("third", "plural")},
     "υπάρχω": {("third", "singular"), ("third", "plural")},
 }
 TENSE_EXCEPTIONS = {
@@ -38,6 +39,7 @@ TENSE_EXCEPTIONS = {
     "έχω": {"present", "imperfect", "future_continuous"},
     "πρέπει": {"present", "imperfect", "future_continuous"},
     "πρόκειται": {"present", "imperfect"},
+    "αφορώ": {"present", "imperfect", "future_continuous"},
 }
 
 
