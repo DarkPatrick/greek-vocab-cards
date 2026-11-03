@@ -32,6 +32,8 @@ PERSON_EXCEPTIONS = {
     "πρέπει": {("third", "singular")},
     "πρόκειται": {("third", "singular")},
     "αφορώ": {("third", "singular"), ("third", "plural")},
+    "συμβαίνω": {("third", "singular"), ("third", "plural")},
+    "συμβαίνει": {("third", "singular"), ("third", "plural")},
     "υπάρχω": {("third", "singular"), ("third", "plural")},
 }
 TENSE_EXCEPTIONS = {
